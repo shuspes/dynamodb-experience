@@ -4,17 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "offline": "sls offline start --port 3001"
+    "offline": "sls offline start"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.285.1",
-    "express": "^4.16.3",
-    "serverless-dynamodb-local": "^0.2.30",
-    "serverless-http": "^1.6.0",
-    "serverless-offline": "^3.25.6",
     "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "serverless-dynamodb-local": "^0.2.30",
+    "serverless-offline": "^3.25.6"
   }
 }
