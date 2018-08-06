@@ -19,6 +19,13 @@ functions:
           path: dynamo/create
           method: post
           cors: true
+  createCondition:
+    handler: handlers/createCondition.createCondition
+    events:
+      - http:
+          path: dynamo/createCondition
+          method: post
+          cors: true
 
 
 plugins:
