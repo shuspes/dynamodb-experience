@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.285.1",
+    "dynogels": "^9.0.0",
+    "joi": "^13.5.2",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
