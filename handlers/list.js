@@ -1,10 +1,4 @@
-const AWS = require('aws-sdk');
-
-const TABLE_NAME = 'dynamo-experience';
-const dynamoDb = new AWS.DynamoDB.DocumentClient({
-    region: 'localhost',
-    endpoint: 'http://localhost:3001'
-});
+const { dynamoDb, TABLE_NAME } = require('../utils/constants');
 
 module.exports.list = (event, context, callback) => {
     const params = {

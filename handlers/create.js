@@ -1,12 +1,5 @@
-const AWS = require('aws-sdk');
 const uuid = require('uuid');
-
-const dynamoDb = new AWS.DynamoDB.DocumentClient({
-    region: 'localhost',
-    endpoint: 'http://localhost:3001'
-});
-
-const TABLE_NAME = 'dynamo-experience';
+const { dynamoDb, TABLE_NAME } = require('../utils/constants');
 
 module.exports.create = (event, context, callback) => {
     const timestamp = new Date().getTime();
