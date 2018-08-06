@@ -15,7 +15,7 @@ module.exports.create = (event, context, callback) => {
     const params = {
       TableName: TABLE_NAME,
       Item: {
-        ID: uuid.v1(),
+        ID: data.ID || uuid.v1(),
         Title: data.Title || '',
         Date: timestamp,
         Desciption: data.Desciption || '',

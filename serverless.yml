@@ -31,6 +31,12 @@ custom:
     start:
       port: 3001
       migrate: true
+      seed: true
+    seed:
+      test:
+        sources:
+          - table: dynamo-experience
+            sources: [./seed/dynamo-experience-data.json]
   serverless-offline:
     port: 3000
 
