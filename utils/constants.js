@@ -4,7 +4,7 @@ const TABLE_NAME = 'dynamo-experience';
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient({
     region: 'localhost',
-    endpoint: 'http://localhost:3001'
+    endpoint: 'http://localhost:3002'
 });
 
 module.exports.dynamoDb = dynamoDb;
