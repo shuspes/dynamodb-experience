@@ -4,6 +4,8 @@ const { dynamoDb, TABLE_NAME } = require('../utils/constants');
 const dynogels = require('dynogels');
 const Joi = require('joi');
 
+dynogels.AWS.config.update({region: "eu-central-1"});
+
 const Item = dynogels.define('Item', {
     hashKey : 'ID', 
     rangeKey : 'Title', 
@@ -21,6 +23,14 @@ const Item = dynogels.define('Item', {
 module.exports.createCondition = (event, context, callback) => {
     const timestamp = new Date().getTime();
     const data = JSON.parse(event.body);
+
+    // dynogels.createTables(function(err) {
+    //     if (err) {
+    //       console.log('Error creating tables: ', err);
+    //     } else {
+    //       console.log('Tables have been created');
+    //     }
+    //   });
 
 
     let params = {};
@@ -40,8 +50,12 @@ module.exports.createCondition = (event, context, callback) => {
     Item.create(item, params, function (error, acc) {
         let result = ''
         if(error) {
+            console.log('error');
+            
             result = error;
         } else {
+            console.log('result');
+            
             result = acc;
         }
 
