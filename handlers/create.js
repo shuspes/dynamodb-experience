@@ -13,7 +13,7 @@ module.exports.create = (event, context, callback) => {
         Date: timestamp,
         Desciption: data.Desciption || '',
         Count: data.Count || 0,
-        Number: data.Number || 0
+        NumberOf: data.NumberOf || 0
       }
     };
     
