@@ -13,18 +13,18 @@ functions:
           path: dynamo/list
           method: get
           cors: true
+  listDate:
+    handler: handlers/list.listDate
+    events:
+      - http:
+          path: dynamo/list/Date/{from}/{to?}
+          method: get
+          cors: true
   create:
     handler: handlers/create.create
     events:
       - http:
           path: dynamo/create
-          method: post
-          cors: true
-  createCondition:
-    handler: handlers/createCondition.createCondition
-    events:
-      - http:
-          path: dynamo/createCondition
           method: post
           cors: true
 
@@ -37,7 +37,7 @@ custom:
   tableName: 'dynamo-experience'
   dynamodb:
     start:
-      port: 3001
+      port: 3004
       migrate: true
       seed: true
     seed:
@@ -76,6 +76,17 @@ resources:
             AttributeType: S
           - AttributeName: Title
             AttributeType: S
+          - AttributeName: Date
+            AttributeType: S
         ProvisionedThroughput:   
             ReadCapacityUnits: 1
             WriteCapacityUnits: 1
+        LocalSecondaryIndexes:
+          - IndexName: dynamo-experience-byDate
+            KeySchema:
+              - AttributeName: ID
+                KeyType: HASH
+              - AttributeName: Date
+                KeyType: RANGE
+            Projection:
+              ProjectionType: ALL

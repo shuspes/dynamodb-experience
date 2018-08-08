@@ -1,8 +1,9 @@
 const uuid = require('uuid');
 const { dynamoDb, TABLE_NAME } = require('../utils/constants');
+const { getDateInFormat } = require('../utils/formatter');
 
 module.exports.create = (event, context, callback) => {
-    const timestamp = new Date().getTime();
+    const timestamp = getDateInFormat(new Date());
     const data = JSON.parse(event.body);
   
     const params = {
@@ -13,7 +14,7 @@ module.exports.create = (event, context, callback) => {
         Date: timestamp,
         Desciption: data.Desciption || '',
         Count: data.Count || 0,
-        Number: data.Number || 0
+        NumberOf: data.NumberOf || 0
       }
     };
     
