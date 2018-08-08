@@ -16,7 +16,7 @@ functions:
     handler: handlers/list.listDate
     events:
       - http:
-          path: dynamo/list/Date
+          path: dynamo/list/Date/{from}/{to?}
           method: get
           cors: true
   create:
@@ -36,7 +36,7 @@ custom:
   tableName: 'dynamo-experience'
   dynamodb:
     start:
-      port: 3001
+      port: 3004
       migrate: true
       seed: true
     seed:

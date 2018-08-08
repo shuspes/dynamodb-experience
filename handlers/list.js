@@ -1,20 +1,27 @@
 const { dynamoDb, TABLE_NAME } = require('../utils/constants');
 const { getDateInFormat } = require('../utils/formatter');
 
-const listDate = (event, context, callback) => {
-    const timestamp = getDateInFormat(new Date('12-2-2013'));
+const listDate = (event, context, callback) => {    
+    const { 
+        from: dateFromParam, 
+        to: dateToParam = Date.now() 
+    } = event.pathParameters;
+    
+    const dateTo = getDateInFormat(new Date(dateToParam));
+    const dateFrom = getDateInFormat(new Date(dateFromParam));
 
     const params = {
         TableName: TABLE_NAME,
         IndexName: 'dynamo-experience-byDate',
-        KeyConditionExpression: 'ID = :id AND #D > :date',
+        KeyConditionExpression: 'ID = :id AND #D BETWEEN :dateFrom AND :dateTo',
         ExpressionAttributeValues: {
             ':id': '7ebd8d00-995d-11e8-9b0a-07fa8e1fa110',
-            ':date': timestamp
+            ':dateTo': dateTo,
+            ':dateFrom': dateFrom
         },
         ExpressionAttributeNames: {"#D": "Date"},
-        // ScanIndexForward: false,
-        // // Limit: 1,
+        ScanIndexForward: false,
+        // Limit: 1,
     };
   
     dynamoDb.query(params).promise()
