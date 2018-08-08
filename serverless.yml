@@ -12,6 +12,13 @@ functions:
           path: dynamo/list
           method: get
           cors: true
+  listDate:
+    handler: handlers/list.listDate
+    events:
+      - http:
+          path: dynamo/list/Date
+          method: get
+          cors: true
   create:
     handler: handlers/create.create
     events:
